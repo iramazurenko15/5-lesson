@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- Написать функцию преобразования цвета из 10-ного представления в 16-ный. Функция должна принимать 3 числа от 0 до 255 и возвращать строковый хеш. -->
+	
+	<script>
+			function rgbToHex(r,g,b) {
+				function decToHex(dec) {
+					if (dec < 0 || dec > 255) console.log("Введите число от 0 до 255");
+					return (dec < 17) ? "0" + dec.toString(16): dec.toString(16);
+				}
+				console.log(decToHex(r)+ decToHex(g) + decToHex(b))
+			}
+			rgbToHex(22,2,233)
+	</script>
+
+	<!-- Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999, мы должны получить на выходе объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни. Например для числа 245 мы должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, 'сотни’: 2}. Если число превышает 999, необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+ -->
+<script>
+		function numToObject(num) {
+			var numObject = {};
+			var numString = num.toString();
+			if (num > 999 || num < 0) {
+				console.log("Введите число от 1 до 999");
+				console.log(numObject);
+			}
+			else  {
+				numObject['единицы'] = +numString[numString.length - 1];
+				numObject['десятки'] = +numString[(numString.length - 2)] || 0;
+				numObject['сотни'] = +numString[(numString.length - 3)] || 0;
+				console.log(numObject);					
+			}					
+		}
+		numToObject(2)
+	</script>
+
+	<!-- Реализовать функцию objectToQueryString(object), которая принимает аргументом объект, возвращает строку. Примеры работы:
+	console.log(objectToQueryString({user: 'Dmitry'})); // user=Dmitry  
+	console.log(objectToQueryString({user: 'Dmitry', password: 'pass'})); // user=Dmitry&password=pass 
+	console.log(objectToQueryString({user: 'Dmitry', password: 'pass', id=1})); // user=Dmitry&password=pass&id=1 -->
+
+	<script>
+		function objectToQuerystring (obj) {
+			return Object.keys(obj).map(function(key) {return key + "=" + obj[key]}).join('&');
+		}
+		console.log(objectToQuerystring({name: "Ira", age: 22}))
+	</script>
+
+</body>
+</html>
